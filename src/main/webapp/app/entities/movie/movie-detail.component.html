@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="movie">
+            <h2><span jhiTranslate="jhipsterDemoApp.movie.detail.title">Movie</span> {{ movie.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jhipsterDemoApp.movie.name">Name</span></dt>
+                <dd>
+                    <span>{{ movie.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterDemoApp.movie.actor">Actor</span></dt>
+                <dd>
+                    <span *ngFor="let actor of movie.actors; let last = last">
+                        <a [routerLink]="['/actor', actor?.id, 'view']">{{ actor.name }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterDemoApp.movie.director">Director</span></dt>
+                <dd>
+                    <div *ngIf="movie.director">
+                        <a [routerLink]="['/director', movie.director?.id, 'view']">{{ movie.director?.name }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/movie', movie.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

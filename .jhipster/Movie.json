@@ -1,0 +1,39 @@
+{
+    "name": "Movie",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "actor",
+            "otherEntityRelationshipName": "movie",
+            "relationshipName": "actor",
+            "otherEntityField": "name",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "director",
+            "otherEntityRelationshipName": "movie",
+            "relationshipName": "director",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20200219155900",
+    "entityTableName": "movie",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

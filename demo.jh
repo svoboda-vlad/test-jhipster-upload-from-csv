@@ -1,0 +1,15 @@
+entity Movie {
+  name String required
+}
+entity Actor {
+  name String required
+}
+entity Director {
+  name String required
+}
+relationship ManyToMany {
+  Movie{actor(name)} to Actor{movie(name)}
+}
+relationship OneToMany {
+  Director{movie(name)} to Movie{director(name)}
+}
