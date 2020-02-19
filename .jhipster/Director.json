@@ -1,0 +1,30 @@
+{
+    "name": "Director",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "movie",
+            "otherEntityRelationshipName": "director",
+            "relationshipName": "movie"
+        }
+    ],
+    "changelogDate": "20200219160100",
+    "entityTableName": "director",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -44,6 +44,12 @@ public class CacheConfiguration {
             createCache(cm, svoboda_vlad.seznam.cz.jhipsterdemo.domain.User.class.getName() + ".authorities");
             createCache(cm, svoboda_vlad.seznam.cz.jhipsterdemo.domain.PersistentToken.class.getName());
             createCache(cm, svoboda_vlad.seznam.cz.jhipsterdemo.domain.User.class.getName() + ".persistentTokens");
+            createCache(cm, svoboda_vlad.seznam.cz.jhipsterdemo.domain.Movie.class.getName());
+            createCache(cm, svoboda_vlad.seznam.cz.jhipsterdemo.domain.Movie.class.getName() + ".actors");
+            createCache(cm, svoboda_vlad.seznam.cz.jhipsterdemo.domain.Actor.class.getName());
+            createCache(cm, svoboda_vlad.seznam.cz.jhipsterdemo.domain.Actor.class.getName() + ".movies");
+            createCache(cm, svoboda_vlad.seznam.cz.jhipsterdemo.domain.Director.class.getName());
+            createCache(cm, svoboda_vlad.seznam.cz.jhipsterdemo.domain.Director.class.getName() + ".movies");
             // jhipster-needle-ehcache-add-entry
         };
     }
