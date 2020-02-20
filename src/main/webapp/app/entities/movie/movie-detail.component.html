@@ -14,13 +14,13 @@
                 </dd>
                 <dt><span jhiTranslate="jhipsterDemoApp.movie.actor">Actor</span></dt>
                 <dd>
-                    <span *ngFor="let actor of movie.actors; let last = last">
+                    <span *ngFor="let actor of movie.actors; let last = last" id="movie-actors">
                         <a [routerLink]="['/actor', actor?.id, 'view']">{{ actor.name }}</a>{{ last ? '' : ', ' }}
                     </span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterDemoApp.movie.director">Director</span></dt>
                 <dd>
-                    <div *ngIf="movie.director">
+                    <div *ngIf="movie.director" id="movie-director">
                         <a [routerLink]="['/director', movie.director?.id, 'view']">{{ movie.director?.name }}</a>
                     </div>
                 </dd>
