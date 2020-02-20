@@ -17,7 +17,16 @@ describe('Component Tests', () => {
     const movie1 = {
       id: 123,
       name: 'movie123',
-      actors: [],
+      actors: [
+        {
+          id: 125,
+          name: 'actor125'
+        },
+        {
+          id: 126,
+          name: 'actor126'
+        }
+      ],
       director: {
         id: 124,
         name: 'director124'
@@ -58,6 +67,13 @@ describe('Component Tests', () => {
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
         expect(compiled.querySelector("div#movie-director").textContent).toContain(movie1.director.name);
-      });    
+      });
+    
+      it("Should have div with actors names when existing movie and actors", () => {
+        fixture.detectChanges();
+        const compiled = fixture.debugElement.nativeElement;
+        expect(compiled.querySelector("div#movie-actors").textContent).toContain(movie1.actors.map(actor => actor.name).join(", "));
+      });
+    
   });
 });
