@@ -39,7 +39,7 @@ describe('Component Tests', () => {
     });
     
       it("Should have h2 with movie id when existing movie", () => {
-        const movie = new Movie(123);
+        const movie = new Movie(124);
         // comp.ngOnInit();
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
