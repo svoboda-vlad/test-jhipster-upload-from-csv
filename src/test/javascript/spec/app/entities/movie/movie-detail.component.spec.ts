@@ -14,7 +14,15 @@ describe('Component Tests', () => {
   describe('Movie Management Detail Component', () => {
     let comp: MovieDetailComponent;
     let fixture: ComponentFixture<MovieDetailComponent>;
-    const movie1 = new Movie(123, '123name', [], new Director(124,'124name'));
+    const movie1 = {
+      id: 123,
+      name: 'movie123',
+      actors: [],
+      director: {
+        id: 124,
+        name: 'director124'
+      }
+    };
     const route = ({ data: of({ movie: movie1 }) } as any) as ActivatedRoute;
 
     beforeEach(() => {
@@ -49,7 +57,7 @@ describe('Component Tests', () => {
       it("Should have div with director name when existing movie and director", () => {
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
-        expect(compiled.querySelector("div#movie-director").textContent).toContain(movie1.director?.name);
+        expect(compiled.querySelector("div#movie-director").textContent).toContain(movie1.director.name);
       });    
   });
 });
