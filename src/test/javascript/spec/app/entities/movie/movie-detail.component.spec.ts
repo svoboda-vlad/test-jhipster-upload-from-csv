@@ -14,7 +14,7 @@ describe('Component Tests', () => {
   describe('Movie Management Detail Component', () => {
     let comp: MovieDetailComponent;
     let fixture: ComponentFixture<MovieDetailComponent>;
-    const movie1 = new Movie(123, '123name', null, new Director(124,'124name'));
+    const movie1 = new Movie(123, '123name', [], new Director(124,'124name'));
     const route = ({ data: of({ movie: movie1 }) } as any) as ActivatedRoute;
 
     beforeEach(() => {
