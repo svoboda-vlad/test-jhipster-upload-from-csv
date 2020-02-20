@@ -13,8 +13,8 @@
                     <span>{{ movie.name }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhipsterDemoApp.movie.actor">Actor</span></dt>
-                <dd>
-                    <span *ngFor="let actor of movie.actors; let last = last" id="movie-actors">
+                <dd id="movie-actors">
+                    <span *ngFor="let actor of movie.actors; let last = last">
                         <a [routerLink]="['/actor', actor?.id, 'view']">{{ actor.name }}</a>{{ last ? '' : ', ' }}
                     </span>
                 </dd>
