@@ -13,8 +13,8 @@ describe('Component Tests', () => {
   describe('Movie Management Detail Component', () => {
     let comp: MovieDetailComponent;
     let fixture: ComponentFixture<MovieDetailComponent>;
-    const movie = new Movie(123);
-    const route = ({ data: of({ movie: movie }) } as any) as ActivatedRoute;
+    const movie1 = new Movie(123);
+    const route = ({ data: of({ movie: movie1 }) } as any) as ActivatedRoute;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -42,7 +42,7 @@ describe('Component Tests', () => {
       it("Should have h2 with movie id when existing movie", () => {
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
-        expect(compiled.querySelector("h2").textContent).toContain("Movie " + movie.id);
+        expect(compiled.querySelector("h2").textContent).toContain("Movie " + movie1.id);
       });    
   });
 });
