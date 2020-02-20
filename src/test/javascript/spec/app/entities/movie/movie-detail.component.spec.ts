@@ -13,7 +13,8 @@ describe('Component Tests', () => {
   describe('Movie Management Detail Component', () => {
     let comp: MovieDetailComponent;
     let fixture: ComponentFixture<MovieDetailComponent>;
-    const route = ({ data: of({ movie: new Movie(123) }) } as any) as ActivatedRoute;
+    const movieExisting = new Movie(123);
+    const route = ({ data: of({ movie: movieExisting ) }) } as any) as ActivatedRoute;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -39,11 +40,9 @@ describe('Component Tests', () => {
     });
     
       it("Should have h2 with movie id when existing movie", () => {
-        const movie = new Movie(124);
-        // comp.ngOnInit();
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
-        expect(compiled.querySelector("h2").textContent).toContain("Movie " + movie.id);
+        expect(compiled.querySelector("h2").textContent).toContain("Movie " + movieExisting.id);
       });    
   });
 });
