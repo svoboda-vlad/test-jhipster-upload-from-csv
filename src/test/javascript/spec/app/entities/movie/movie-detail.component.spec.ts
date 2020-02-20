@@ -49,7 +49,7 @@ describe('Component Tests', () => {
       it("Should have div with director name when existing movie and director", () => {
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
-        expect(compiled.querySelector("div#movie-director").textContent).toContain(movie1.director.name);
+        expect(compiled.querySelector("div#movie-director").textContent).toContain(movie1.director?.name);
       });    
   });
 });
