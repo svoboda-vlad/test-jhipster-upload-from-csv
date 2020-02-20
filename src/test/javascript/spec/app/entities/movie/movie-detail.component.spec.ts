@@ -14,7 +14,7 @@ describe('Component Tests', () => {
     let comp: MovieDetailComponent;
     let fixture: ComponentFixture<MovieDetailComponent>;
     const movieExisting = new Movie(123);
-    const route = ({ data: of({ movie: movieExisting ) }) } as any) as ActivatedRoute;
+    const route = ({ data: of({ movie: movieExisting }) } as any) as ActivatedRoute;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
