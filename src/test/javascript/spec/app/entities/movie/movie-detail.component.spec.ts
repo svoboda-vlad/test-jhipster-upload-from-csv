@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing'; // routerLink
 
 import { JhipsterDemoTestModule } from '../../../test.module';
 import { MovieDetailComponent } from 'app/entities/movie/movie-detail.component';
@@ -14,11 +17,12 @@ describe('Component Tests', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [JhipsterDemoTestModule],
+        imports: [JhipsterDemoTestModule, ReactiveFormsModule, RouterTestingModule],
         declarations: [MovieDetailComponent],
-        providers: [{ provide: ActivatedRoute, useValue: route }]
+        providers: [{ provide: ActivatedRoute, useValue: route }],
+        schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
       })
-        .overrideTemplate(MovieDetailComponent, '')
+        // .overrideTemplate(MovieDetailComponent, '')
         .compileComponents();
       fixture = TestBed.createComponent(MovieDetailComponent);
       comp = fixture.componentInstance;
@@ -33,5 +37,13 @@ describe('Component Tests', () => {
         expect(comp.movie).toEqual(jasmine.objectContaining({ id: 123 }));
       });
     });
+    
+      it("Should have h2 with movie id when existing movie", () => {
+        const movie = new Movie(123);
+        comp.ngOnInit();
+        fixture.detectChanges();
+        const compiled = fixture.debugElement.nativeElement;
+        expect(compiled.querySelector("h2").textContent).toContain("Movie " + movie.id);
+      });    
   });
 });
