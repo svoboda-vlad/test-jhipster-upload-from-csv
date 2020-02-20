@@ -69,10 +69,10 @@ describe('Component Tests', () => {
         expect(compiled.querySelector("div#movie-director").textContent).toContain(movie1.director.name);
       });
     
-      it("Should have div with actors names when existing movie and actors", () => {
+      it("Should have span with actors names when existing movie and actors", () => {
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
-        expect(compiled.querySelector("div#movie-actors").textContent).toContain(movie1.actors.map(actor => actor.name).join(", "));
+        expect(compiled.querySelector("span#movie-actors").textContent).toContain(movie1.actors.map(actor => actor.name).join(", "));
       });
     
   });
