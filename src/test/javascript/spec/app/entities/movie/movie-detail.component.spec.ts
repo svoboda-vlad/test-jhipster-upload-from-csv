@@ -8,12 +8,13 @@ import { RouterTestingModule } from '@angular/router/testing'; // routerLink
 import { JhipsterDemoTestModule } from '../../../test.module';
 import { MovieDetailComponent } from 'app/entities/movie/movie-detail.component';
 import { Movie } from 'app/shared/model/movie.model';
+import { Director } from 'app/shared/model/director.model';
 
 describe('Component Tests', () => {
   describe('Movie Management Detail Component', () => {
     let comp: MovieDetailComponent;
     let fixture: ComponentFixture<MovieDetailComponent>;
-    const movie1 = new Movie(123);
+    const movie1 = new Movie(123, '123name', null, new Director(124,'124name'));
     const route = ({ data: of({ movie: movie1 }) } as any) as ActivatedRoute;
 
     beforeEach(() => {
@@ -43,6 +44,12 @@ describe('Component Tests', () => {
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
         expect(compiled.querySelector("h2").textContent).toContain("Movie " + movie1.id);
+      });
+    
+      it("Should have div with director name when existing movie and director", () => {
+        fixture.detectChanges();
+        const compiled = fixture.debugElement.nativeElement;
+        expect(compiled.querySelector("div#movie-director").textContent).toContain(movie1.director.name);
       });    
   });
 });
