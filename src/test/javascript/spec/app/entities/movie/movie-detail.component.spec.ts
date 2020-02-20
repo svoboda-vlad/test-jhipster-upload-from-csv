@@ -40,7 +40,7 @@ describe('Component Tests', () => {
     
       it("Should have h2 with movie id when existing movie", () => {
         const movie = new Movie(123);
-        comp.ngOnInit();
+        // comp.ngOnInit();
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
         expect(compiled.querySelector("h2").textContent).toContain("Movie " + movie.id);
