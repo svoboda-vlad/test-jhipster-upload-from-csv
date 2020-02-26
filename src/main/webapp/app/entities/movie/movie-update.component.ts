@@ -4,6 +4,7 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { IMovie, Movie } from 'app/shared/model/movie.model';
 import { MovieService } from './movie.service';
@@ -22,12 +23,12 @@ export class MovieUpdateComponent implements OnInit {
   isSaving = false;
   actors: IActor[] = [];
   directors: IDirector[] = [];
+  selectedActors: IActor[] = [];
+  selectedDirector: IDirector;
 
   editForm = this.fb.group({
     id: [],
-    name: [null, [Validators.required]],
-    actors: [],
-    director: []
+    name: [null, [Validators.required]]
   });
 
   constructor(
@@ -51,10 +52,10 @@ export class MovieUpdateComponent implements OnInit {
   updateForm(movie: IMovie): void {
     this.editForm.patchValue({
       id: movie.id,
-      name: movie.name,
-      actors: movie.actors,
-      director: movie.director
+      name: movie.name
     });
+    selectedActors = movie.actors;
+    selectedDirector = movie.director;
   }
 
   previousState(): void {
@@ -76,8 +77,8 @@ export class MovieUpdateComponent implements OnInit {
       ...new Movie(),
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
-      actors: this.editForm.get(['actors'])!.value,
-      director: this.editForm.get(['director'])!.value
+      actors: selectedActors,
+      director: selectedDirector
     };
   }
 
@@ -95,10 +96,6 @@ export class MovieUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
-  }
-
-  trackById(index: number, item: SelectableEntity): any {
-    return item.id;
   }
 
   getSelected(selectedVals: IActor[], option: IActor): IActor {
