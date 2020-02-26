@@ -54,8 +54,8 @@ export class MovieUpdateComponent implements OnInit {
       id: movie.id,
       name: movie.name
     });
-    this.selectedActors = movie.actors;
-    this.selectedDirector = movie.director;
+    this.selectedActors = movie!.actors;
+    this.selectedDirector = movie!.director;
   }
 
   previousState(): void {
