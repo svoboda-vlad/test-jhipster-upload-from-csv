@@ -98,14 +98,4 @@ export class MovieUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  getSelected(selectedVals: IActor[], option: IActor): IActor {
-    if (selectedVals) {
-      for (let i = 0; i < selectedVals.length; i++) {
-        if (option.id === selectedVals[i].id) {
-          return selectedVals[i];
-        }
-      }
-    }
-    return option;
-  }
 }
