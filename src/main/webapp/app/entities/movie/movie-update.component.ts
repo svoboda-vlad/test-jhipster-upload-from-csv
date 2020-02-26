@@ -24,7 +24,7 @@ export class MovieUpdateComponent implements OnInit {
   actors: IActor[] = [];
   directors: IDirector[] = [];
   selectedActors: IActor[] = [];
-  selectedDirector: IDirector;
+  selectedDirector: IDirector | null = null;
 
   editForm = this.fb.group({
     id: [],
@@ -54,8 +54,8 @@ export class MovieUpdateComponent implements OnInit {
       id: movie.id,
       name: movie.name
     });
-    selectedActors = movie.actors;
-    selectedDirector = movie.director;
+    this.selectedActors = movie.actors;
+    this.selectedDirector = movie.director;
   }
 
   previousState(): void {
