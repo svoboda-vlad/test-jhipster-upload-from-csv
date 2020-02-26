@@ -24,7 +24,7 @@ export class MovieUpdateComponent implements OnInit {
   actors: IActor[] = [];
   directors: IDirector[] = [];
   selectedActors: IActor[] = [];
-  selectedDirector: IDirector | null = null;
+  selectedDirector: IDirector;
 
   editForm = this.fb.group({
     id: [],
