@@ -4,13 +4,12 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { NgSelectModule } from '@ng-select/ng-select';
 
 import { IMovie, Movie } from 'app/shared/model/movie.model';
 import { MovieService } from './movie.service';
 import { IActor } from 'app/shared/model/actor.model';
 import { ActorService } from 'app/entities/actor/actor.service';
-import { IDirector, Director } from 'app/shared/model/director.model';
+import { IDirector } from 'app/shared/model/director.model';
 import { DirectorService } from 'app/entities/director/director.service';
 
 type SelectableEntity = IActor | IDirector;
