@@ -24,7 +24,7 @@
 
                 <div class="form-group">
                     <label jhiTranslate="jhipsterDemoApp.movie.actor" for="field_actors">Actor</label>
-                    <ng-select [items]="actors | async"
+                    <ng-select [items]="actors"
                                bindLabel="name"
                                [multiple]="true"
                                placeholder="Select Actors"
@@ -36,7 +36,7 @@
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterDemoApp.movie.director" for="field_director">Director</label>
-                    <ng-select [items]="director | async"
+                    <ng-select [items]="director"
                                bindLabel="name"
                                placeholder="Select Director"
                                [(ngModel)]="selectedDirector"
