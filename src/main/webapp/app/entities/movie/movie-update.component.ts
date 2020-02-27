@@ -77,8 +77,8 @@ export class MovieUpdateComponent implements OnInit {
       ...new Movie(),
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
-      actors: this.selectedActors!,
-      director: this.selectedDirector!
+      actors: this.selectedActors,
+      director: this.selectedDirector
     };
   }
 
