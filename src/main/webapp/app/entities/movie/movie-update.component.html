@@ -26,6 +26,7 @@
                     <label jhiTranslate="jhipsterDemoApp.movie.actor" for="field_actors">Actor</label>
                     <ng-select [items]="actors"
                                bindLabel="name"
+                               bindValue="id"
                                [multiple]="true"
                                placeholder="Select Actors"
                                [(ngModel)]="selectedActors"
@@ -38,6 +39,7 @@
                     <label class="form-control-label" jhiTranslate="jhipsterDemoApp.movie.director" for="field_director">Director</label>
                     <ng-select [items]="directors"
                                bindLabel="name"
+                               bindValue="id"
                                placeholder="Select Director"
                                [(ngModel)]="selectedDirector"
                                class="form-control" 
