@@ -14,8 +14,6 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -25,9 +23,7 @@ import { FormsModule } from '@angular/forms';
     JhipsterDemoHomeModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     JhipsterDemoEntityModule,
-    JhipsterDemoAppRoutingModule,
-    NgSelectModule,
-    FormsModule
+    JhipsterDemoAppRoutingModule
   ],
   declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
   bootstrap: [MainComponent]
