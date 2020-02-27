@@ -32,8 +32,5 @@
   "defaultProject": "jhipster-demo",
   "cli": {
     "packageManager": "npm"
-  },
-  "styles": [
-     "src/styles.css"
-  ]
+  }
 }
