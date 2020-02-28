@@ -24,24 +24,20 @@
 
                 <div class="form-group">
                     <label jhiTranslate="jhipsterDemoApp.movie.actor" for="field_actors">Actor</label>
-                    <ng-select [items]="actors"
+                    <ng-select class="form-control" id="field_actors" multiple name="actors" formControlName="actors"
+                               [items]="actors"
                                bindLabel="name"
                                [multiple]="true"
-                               placeholder="Select Actors"
-                               [(ngModel)]="selectedActors"
-                               class="form-control" 
-                               id="field_actors">
+                               placeholder="Select Actors">
                     </ng-select>
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterDemoApp.movie.director" for="field_director">Director</label>
-                    <ng-select [items]="directors"
+                    <ng-select class="form-control" id="field_director" name="director" formControlName="director"
+                               [items]="directors"
                                bindLabel="name"                               
-                               placeholder="Select Director"
-                               [(ngModel)]="selectedDirector"
-                               class="form-control" 
-                               id="field_director">
+                               placeholder="Select Director">
                     </ng-select>
                 </div>
             </div>
