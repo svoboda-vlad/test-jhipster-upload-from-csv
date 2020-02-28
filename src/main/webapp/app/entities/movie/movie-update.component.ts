@@ -53,7 +53,8 @@ export class MovieUpdateComponent implements OnInit {
       id: movie.id,
       name: movie.name
     });
-    this.selectedActors = movie.actors || [];
+    // this.selectedActors = movie.actors || [];
+    this.selectedActors = [{id: 1051, name: 'Sigourney Weaver'}];
     this.selectedDirector = movie.director;
   }
 
