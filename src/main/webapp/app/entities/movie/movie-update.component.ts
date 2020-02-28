@@ -12,8 +12,6 @@ import { ActorService } from 'app/entities/actor/actor.service';
 import { IDirector } from 'app/shared/model/director.model';
 import { DirectorService } from 'app/entities/director/director.service';
 
-type SelectableEntity = IActor | IDirector;
-
 @Component({
   selector: 'jhi-movie-update',
   templateUrl: './movie-update.component.html'
@@ -22,12 +20,12 @@ export class MovieUpdateComponent implements OnInit {
   isSaving = false;
   actors: IActor[] = [];
   directors: IDirector[] = [];
-  selectedActors: IActor[] = [];
-  selectedDirector: IDirector | undefined = undefined;
 
   editForm = this.fb.group({
     id: [],
-    name: [null, [Validators.required]]
+    name: [null, [Validators.required]],
+    actors: [],
+    director: []    
   });
 
   constructor(
@@ -51,11 +49,10 @@ export class MovieUpdateComponent implements OnInit {
   updateForm(movie: IMovie): void {
     this.editForm.patchValue({
       id: movie.id,
-      name: movie.name
+      name: movie.name,
+      actors: movie.actors,
+      director: movie.director      
     });
-    // this.selectedActors = movie.actors || [];
-    this.selectedActors = [{id: 1051, name: 'Sigourney Weaver'}];
-    this.selectedDirector = movie.director;
   }
 
   previousState(): void {
@@ -77,8 +74,8 @@ export class MovieUpdateComponent implements OnInit {
       ...new Movie(),
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
-      actors: this.selectedActors,
-      director: this.selectedDirector
+      actors: this.editForm.get(['actors'])!.value,
+      director: this.editForm.get(['director'])!.value
     };
   }
 
