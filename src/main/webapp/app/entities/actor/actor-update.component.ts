@@ -14,10 +14,13 @@ import { ActorService } from './actor.service';
 })
 export class ActorUpdateComponent implements OnInit {
   isSaving = false;
+  birthDateDp: any;
 
   editForm = this.fb.group({
     id: [],
-    name: [null, [Validators.required]]
+    name: [null, [Validators.required]],
+    birthDate: [null, [Validators.required]],
+    height: [null, [Validators.min(0), Validators.max(3)]]
   });
 
   constructor(protected actorService: ActorService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -31,7 +34,9 @@ export class ActorUpdateComponent implements OnInit {
   updateForm(actor: IActor): void {
     this.editForm.patchValue({
       id: actor.id,
-      name: actor.name
+      name: actor.name,
+      birthDate: actor.birthDate,
+      height: actor.height
     });
   }
 
@@ -53,7 +58,9 @@ export class ActorUpdateComponent implements OnInit {
     return {
       ...new Actor(),
       id: this.editForm.get(['id'])!.value,
-      name: this.editForm.get(['name'])!.value
+      name: this.editForm.get(['name'])!.value,
+      birthDate: this.editForm.get(['birthDate'])!.value,
+      height: this.editForm.get(['height'])!.value
     };
   }
 

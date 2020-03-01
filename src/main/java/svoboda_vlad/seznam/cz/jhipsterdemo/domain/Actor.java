@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,6 +31,15 @@ public class Actor implements Serializable {
     @NotNull
     @Column(name = "name", nullable = false)
     private String name;
+
+    @NotNull
+    @Column(name = "birth_date", nullable = false)
+    private LocalDate birthDate;
+
+    @DecimalMin(value = "0")
+    @DecimalMax(value = "3")
+    @Column(name = "height", precision = 21, scale = 2)
+    private BigDecimal height;
 
     @ManyToMany(mappedBy = "actors")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -55,6 +66,32 @@ public class Actor implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public Actor birthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+        return this;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public BigDecimal getHeight() {
+        return height;
+    }
+
+    public Actor height(BigDecimal height) {
+        this.height = height;
+        return this;
+    }
+
+    public void setHeight(BigDecimal height) {
+        this.height = height;
     }
 
     public Set<Movie> getMovies() {
@@ -104,6 +141,8 @@ public class Actor implements Serializable {
         return "Actor{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", birthDate='" + getBirthDate() + "'" +
+            ", height=" + getHeight() +
             "}";
     }
 }

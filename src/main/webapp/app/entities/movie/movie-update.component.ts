@@ -26,6 +26,7 @@ export class MovieUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
+    year: [null, [Validators.min(1900), Validators.max(2100)]],
     actors: [],
     director: []
   });
@@ -52,6 +53,7 @@ export class MovieUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: movie.id,
       name: movie.name,
+      year: movie.year,
       actors: movie.actors,
       director: movie.director
     });
@@ -76,6 +78,7 @@ export class MovieUpdateComponent implements OnInit {
       ...new Movie(),
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
+      year: this.editForm.get(['year'])!.value,
       actors: this.editForm.get(['actors'])!.value,
       director: this.editForm.get(['director'])!.value
     };
