@@ -1,12 +1,16 @@
 entity Movie {
-  name String required
+  name String required,
+  year Integer min(1900) max(2100)
 }
 entity Actor {
-  name String required
+  name String required,
+  birthDate LocalDate required,
+  height BigDecimal min(0) max(3)
 }
 entity Director {
   name String required
 }
+
 relationship ManyToMany {
   Movie{actor(name)} to Actor{movie(name)}
 }
