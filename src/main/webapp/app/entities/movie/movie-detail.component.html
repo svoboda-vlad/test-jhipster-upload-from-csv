@@ -12,6 +12,10 @@
                 <dd>
                     <span>{{ movie.name }}</span>
                 </dd>
+                <dt><span jhiTranslate="jhipsterDemoApp.movie.year">Year</span></dt>
+                <dd>
+                    <span>{{ movie.year }}</span>
+                </dd>
                 <dt><span jhiTranslate="jhipsterDemoApp.movie.actor">Actor</span></dt>
                 <dd id="movie-actors">
                     <span *ngFor="let actor of movie.actors; let last = last">

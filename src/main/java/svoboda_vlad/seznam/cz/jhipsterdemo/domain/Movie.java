@@ -30,6 +30,11 @@ public class Movie implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Min(value = 1900)
+    @Max(value = 2100)
+    @Column(name = "year")
+    private Integer year;
+
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "movie_actor",
@@ -61,6 +66,19 @@ public class Movie implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public Movie year(Integer year) {
+        this.year = year;
+        return this;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
     }
 
     public Set<Actor> getActors() {
@@ -123,6 +141,7 @@ public class Movie implements Serializable {
         return "Movie{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", year=" + getYear() +
             "}";
     }
 }

@@ -24,6 +24,26 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterDemoApp.movie.year" for="field_year">Year</label>
+                    <input type="number" class="form-control" name="year" id="field_year"
+                           formControlName="year"/>
+                    <div *ngIf="editForm.get('year')!.invalid && (editForm.get('year')!.dirty || editForm.get('year')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('year')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 1900 }">
+                            This field should be at least 1900.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('year')?.errors?.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 2100 }">
+                            This field cannot be more than 2100.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('year')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label jhiTranslate="jhipsterDemoApp.movie.actor" for="field_actors">Actor</label>
                     <select class="form-control" id="field_actors" multiple name="actors" formControlName="actors">
                         <option [ngValue]="getSelected(editForm.get('actors')!.value, actorOption)" *ngFor="let actorOption of actors; trackBy: trackById">{{ actorOption.name }}</option>
