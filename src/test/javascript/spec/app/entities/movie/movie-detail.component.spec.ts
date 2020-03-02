@@ -72,7 +72,8 @@ describe('Component Tests', () => {
       it("Should have dd with actors names when existing movie and actors", () => {
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
-        expect(compiled.querySelector("dd#movie-actors").textContent).toContain(movie1.actors.map(actor => actor.name).join(", "));
+        expect(compiled.querySelector("dd#movie-actors").textContent).toContain(movie1.actors[0].name);
+        expect(compiled.querySelector("dd#movie-actors").textContent).toContain(movie1.actors[1].name);        
       });
     
   });
