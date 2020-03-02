@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(MovieService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Movie(0, 'AAAAAAA');
+      elemDefault = new Movie(0, 'AAAAAAA', 0);
     });
 
     describe('Service methods', () => {
@@ -54,7 +54,8 @@ describe('Service Tests', () => {
       it('should update a Movie', () => {
         const returnedFromService = Object.assign(
           {
-            name: 'BBBBBB'
+            name: 'BBBBBB',
+            year: 1
           },
           elemDefault
         );
@@ -71,7 +72,8 @@ describe('Service Tests', () => {
       it('should return a list of Movie', () => {
         const returnedFromService = Object.assign(
           {
-            name: 'BBBBBB'
+            name: 'BBBBBB',
+            year: 1
           },
           elemDefault
         );
