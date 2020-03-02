@@ -41,6 +41,9 @@ public class MovieResourceIT {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
+    private static final Integer DEFAULT_YEAR = 1900;
+    private static final Integer UPDATED_YEAR = 1901;
+
     @Autowired
     private MovieRepository movieRepository;
 
@@ -86,7 +89,8 @@ public class MovieResourceIT {
      */
     public static Movie createEntity(EntityManager em) {
         Movie movie = new Movie()
-            .name(DEFAULT_NAME);
+            .name(DEFAULT_NAME)
+            .year(DEFAULT_YEAR);
         return movie;
     }
     /**
@@ -97,7 +101,8 @@ public class MovieResourceIT {
      */
     public static Movie createUpdatedEntity(EntityManager em) {
         Movie movie = new Movie()
-            .name(UPDATED_NAME);
+            .name(UPDATED_NAME)
+            .year(UPDATED_YEAR);
         return movie;
     }
 
@@ -122,6 +127,7 @@ public class MovieResourceIT {
         assertThat(movieList).hasSize(databaseSizeBeforeCreate + 1);
         Movie testMovie = movieList.get(movieList.size() - 1);
         assertThat(testMovie.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testMovie.getYear()).isEqualTo(DEFAULT_YEAR);
     }
 
     @Test
@@ -173,7 +179,8 @@ public class MovieResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(movie.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)));
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
+            .andExpect(jsonPath("$.[*].year").value(hasItem(DEFAULT_YEAR)));
     }
     
     @SuppressWarnings({"unchecked"})
@@ -220,7 +227,8 @@ public class MovieResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(movie.getId().intValue()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME));
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
+            .andExpect(jsonPath("$.year").value(DEFAULT_YEAR));
     }
 
     @Test
@@ -244,7 +252,8 @@ public class MovieResourceIT {
         // Disconnect from session so that the updates on updatedMovie are not directly saved in db
         em.detach(updatedMovie);
         updatedMovie
-            .name(UPDATED_NAME);
+            .name(UPDATED_NAME)
+            .year(UPDATED_YEAR);
 
         restMovieMockMvc.perform(put("/api/movies")
             .contentType(TestUtil.APPLICATION_JSON)
@@ -256,6 +265,7 @@ public class MovieResourceIT {
         assertThat(movieList).hasSize(databaseSizeBeforeUpdate);
         Movie testMovie = movieList.get(movieList.size() - 1);
         assertThat(testMovie.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testMovie.getYear()).isEqualTo(UPDATED_YEAR);
     }
 
     @Test

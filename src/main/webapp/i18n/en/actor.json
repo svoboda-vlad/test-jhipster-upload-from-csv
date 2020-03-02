@@ -17,6 +17,8 @@
         "title": "Actor"
       },
       "name": "Name",
+      "birthDate": "Birth Date",
+      "height": "Height",
       "movie": "Movie"
     }
   }
