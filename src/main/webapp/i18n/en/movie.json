@@ -17,6 +17,7 @@
         "title": "Movie"
       },
       "name": "Name",
+      "year": "Year",
       "actor": "Actor",
       "director": "Director"
     }

@@ -18,6 +18,9 @@
             <column name="name" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
+            <column name="year" type="integer">
+                <constraints nullable="true" />
+            </column>
             <column name="director_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -56,6 +59,7 @@
                   tableName="movie">
             <column name="id" type="numeric"/>
             <column name="name" type="string"/>
+            <column name="year" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>
