@@ -9,29 +9,24 @@ import { JhipsterDemoTestModule } from '../../../test.module';
 import { MovieDetailComponent } from 'app/entities/movie/movie-detail.component';
 import { Movie } from 'app/shared/model/movie.model';
 import { Director } from 'app/shared/model/director.model';
+import { Actor } from 'app/shared/model/actor.model';
 
 describe('Component Tests', () => {
   describe('Movie Management Detail Component', () => {
     let comp: MovieDetailComponent;
     let fixture: ComponentFixture<MovieDetailComponent>;
-    const movie1 = {
+    /* const movie1 = {
       id: 123,
       name: 'movie123',
-      actors: [
-        {
-          id: 125,
-          name: 'actor125'
-        },
-        {
-          id: 126,
-          name: 'actor126'
-        }
+      actors: [ { id: 125, name: 'actor125' },
+        { id: 126, name: 'actor126' }
       ],
-      director: {
-        id: 124,
-        name: 'director124'
-      }
-    };
+      director: { id: 124, name: 'director124' }
+    }; */
+    const movie1 = new Movie(123, 'movie123', 2005,
+                             [new Actor(125,'actor125'), 
+                              new Actor(126,'actor126')], 
+                             new Director(124, 'director124'));    
     const route = ({ data: of({ movie: movie1 }) } as any) as ActivatedRoute;
 
     beforeEach(() => {
@@ -66,14 +61,14 @@ describe('Component Tests', () => {
       it("Should have div with director name when existing movie and director", () => {
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
-        expect(compiled.querySelector("div#movie-director").textContent).toContain(movie1.director.name);
+        expect(compiled.querySelector("div#movie-director").textContent).toContain(movie1.director!.name);
       });
     
       it("Should have dd with actors names when existing movie and actors", () => {
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
-        expect(compiled.querySelector("dd#movie-actors").textContent).toContain(movie1.actors[0].name);
-        expect(compiled.querySelector("dd#movie-actors").textContent).toContain(movie1.actors[1].name);        
+        expect(compiled.querySelector("dd#movie-actors").textContent).toContain(movie1.actors![0].name);
+        expect(compiled.querySelector("dd#movie-actors").textContent).toContain(movie1.actors![1].name);        
       });
     
   });
