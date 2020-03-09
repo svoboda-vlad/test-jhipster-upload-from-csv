@@ -22,7 +22,6 @@ export class ActorUploadComponent {
       skipEmptyLines: true,
       worker: true,
       complete: result => {
-        this.completeStatus = "Finished";
         this.dataList = result.data;
       }
     });
