@@ -25,7 +25,7 @@ export class ActorUploadComponent {
     this.parseCsvFile(fileList[0]);
   }
 
-  parseCsvFile(file): void {
+  parseCsvFile(file: any): void {
     this.papa.parse(file, {
       header: true,
       dynamicTyping: true,
