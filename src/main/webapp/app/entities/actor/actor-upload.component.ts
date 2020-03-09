@@ -20,12 +20,12 @@ export class ActorUploadComponent {
 
   constructor(private papa: Papa) {}
 
-  handleUpload($event: any) {
+  handleUpload($event: any): void {
     const fileList = $event.srcElement.files;
     this.parseCsvFile(fileList[0]);
   }
 
-  parseCsvFile(file) {
+  parseCsvFile(file): void {
     this.papa.parse(file, {
       header: true,
       dynamicTyping: true,
