@@ -16,7 +16,7 @@ import { ActorService } from './actor.service';
 })
 export class ActorUploadComponent {
 
-  dataList: any[];
+  dataList: any[] = [];
 
   constructor(private papa: Papa) {}
 
