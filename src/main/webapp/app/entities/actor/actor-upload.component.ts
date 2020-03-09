@@ -26,6 +26,7 @@ export class ActorUploadComponent implements OnInit {
       worker: true,
       complete: result => {
         this.dataList = result.data;
+        console.log("Parsed:", this.dataList);
       }
     });
   }
