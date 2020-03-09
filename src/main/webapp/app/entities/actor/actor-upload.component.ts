@@ -6,7 +6,7 @@ import { Papa } from "ngx-papaparse";
   templateUrl: './actor-upload.component.html'
 })
 export class ActorUploadComponent implements OnInit {
-
+  completeStatus: string = "Started";
   dataList: any[] = [];
 
   constructor(private papa: Papa) {}
@@ -25,6 +25,7 @@ export class ActorUploadComponent implements OnInit {
       skipEmptyLines: "greedy",
       worker: true,
       complete: result => {
+        this.completeStatus = "Finished";
         this.dataList = result.data;
       }
     });
