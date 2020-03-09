@@ -23,7 +23,7 @@ export class ActorUploadComponent implements OnInit {
       header: true,
       dynamicTyping: true,
       skipEmptyLines: "greedy",
-      worker: true,
+      // worker: true,
       complete: result => {
         this.completeStatus = "Finished";
         this.dataList = result.data;
