@@ -22,7 +22,7 @@ export class ActorUploadComponent implements OnInit {
     this.papa.parse(file, {
       header: true,
       dynamicTyping: true,
-      skipEmptyLines: "greedy",
+      skipEmptyLines: true,
       // worker: true,
       complete: result => {
         this.completeStatus = "Finished";
