@@ -5,7 +5,8 @@
         "title": "Actors",
         "createLabel": "Create a new Actor",
         "createOrEditLabel": "Create or edit a Actor",
-        "notFound": "No Actors found"
+        "notFound": "No Actors found",
+        "uploadLabel": "Upload Actors from file"
       },
       "created": "A new Actor is created with identifier {{ param }}",
       "updated": "A Actor is updated with identifier {{ param }}",
