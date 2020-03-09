@@ -20,7 +20,7 @@ export class ActorUploadComponent {
       header: true,
       dynamicTyping: true,
       skipEmptyLines: true,
-      worker: true,
+      // worker: true,
       complete: result => {
         this.dataList = result.data;
       }
