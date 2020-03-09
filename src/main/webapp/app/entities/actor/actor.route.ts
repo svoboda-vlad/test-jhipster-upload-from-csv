@@ -68,6 +68,15 @@ export const actorRoute: Routes = [
     canActivate: [UserRouteAccessService]
   },
   {
+    path: 'upload',
+    component: ActorUploadComponent,
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'jhipsterDemoApp.actor.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
     path: ':id/edit',
     component: ActorUpdateComponent,
     resolve: {
