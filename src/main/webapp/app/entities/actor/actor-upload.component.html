@@ -1,0 +1,17 @@
+<input type="file" (change)="handleUpload($event)" accept=".csv" />
+<div>
+	<table border="">
+		<thead>
+			<tr>
+				<td>A</td>
+				<td>B</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let record of dataList">
+				<td>{{record.a}}</td>
+				<td>{{record.b}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
