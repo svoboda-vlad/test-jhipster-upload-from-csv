@@ -36,8 +36,8 @@ export class ActorUploadComponent {
   }
 
   private createFromDataList(): IActor[] {
-    let actors: IActor[] = [];  
-    for (let record of this.dataList) {
+    const actors: IActor[] = [];  
+    for (const record of this.dataList) {
       actors.push(new Actor(undefined, record.name));
     }
     return actors;
