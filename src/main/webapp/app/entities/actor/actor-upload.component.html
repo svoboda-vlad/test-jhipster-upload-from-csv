@@ -17,11 +17,13 @@
             <thead>
                 <tr>
                     <th scope="col" ><span jhiTranslate="jhipsterDemoApp.actor.name">Name</span></th>
+                    <th scope="col" ><span jhiTranslate="jhipsterDemoApp.actor.birthDate">Birth Date</span></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let actor of dataList">
                     <td>{{ actor.name }}</td>
+                    <td>{{ actor.birthDate }}</td>                    
                 </tr>
             </tbody>
         </table>
