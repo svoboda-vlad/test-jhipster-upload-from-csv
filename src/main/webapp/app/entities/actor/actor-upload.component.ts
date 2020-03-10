@@ -39,7 +39,7 @@ export class ActorUploadComponent {
   private createFromDataList(): IActor[] {
     const actors: IActor[] = [];  
     for (const record of this.dataList) {
-      actors.push(new Actor(null, record.name, moment(record.birthDate), 0));
+      actors.push(new Actor(undefined, record.name, moment(record.birthDate), undefined));
     }
     return actors;
   }  
