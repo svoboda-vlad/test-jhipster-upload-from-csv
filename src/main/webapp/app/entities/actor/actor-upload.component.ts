@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Papa } from "ngx-papaparse";
 
+import { IActor, Actor } from 'app/shared/model/actor.model';
+import { ActorService } from './actor.service';
+
 @Component({
   selector: 'jhi-actor-upload',
   templateUrl: './actor-upload.component.html'
@@ -26,5 +29,18 @@ export class ActorUploadComponent {
       }
     });
   }
+  
+  saveAll(): void {
+    const actors = this.createFromDataList();
+    this.actorService.createAll(actors);
+  }
+
+  private createFromDataList(): IActor[] {
+    let actors: IActor[] = [];  
+    for (let record of this.dataList) {
+      actors.push(new Actor(undefined, record.name));
+    }
+    return actors;
+  }  
 
 }
