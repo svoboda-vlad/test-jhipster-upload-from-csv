@@ -126,7 +126,10 @@ public class ActorResource {
           }
         }
         List<Actor> result = actorRepository.saveAll(actors);
-        return actorRepository.findAll();
+		if(result.isEmpty()){
+			return new ResponseEntity<List<Actor>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<Actor>>(result, HttpStatus.OK);        
     }
-    
+ 
 }
