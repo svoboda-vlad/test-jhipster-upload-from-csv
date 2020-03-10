@@ -76,7 +76,7 @@ export class ActorService {
   createAll(actors: IActor[]): Observable<EntityArrayResponseType> {
     let copies;
     let actor;
-    for (actor in actors) {
+    for (actor of actors) {
       copies.push(this.convertDateFromClient(actor));
     }
     return this.http
