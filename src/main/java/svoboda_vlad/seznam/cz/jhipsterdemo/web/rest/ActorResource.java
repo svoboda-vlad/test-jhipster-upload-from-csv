@@ -118,18 +118,13 @@ public class ActorResource {
     }
 
     @PostMapping("/actors/all")
-    public ResponseEntity<List<Actor>> createActorsAll(@Valid @RequestBody List<Actor> actors) throws URISyntaxException {
+    public List<Actor> createActorsAll(@Valid @RequestBody List<Actor> actors) throws URISyntaxException {
         log.debug("REST request to save Actors : {}", actors);
         for (Actor actor : actors) {
           if (actor.getId() != null) {
               throw new BadRequestAlertException("A new actor cannot already have an ID", ENTITY_NAME, "idexists");
           }
         }
-        List<Actor> result = actorRepository.saveAll(actors);
-		if(result.isEmpty()){
-			return new ResponseEntity<List<Actor>>(HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<List<Actor>>(result, HttpStatus.OK);        
+        return actorRepository.saveAll(actors);
     }
- 
 }
