@@ -116,4 +116,17 @@ public class ActorResource {
         actorRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
+
+    @PostMapping("/actors/all")
+    public ResponseEntity<List<Actor>> createActorsAll(@Valid @RequestBody List<Actor> actors) throws URISyntaxException {
+        log.debug("REST request to save Actors : {}", actors);
+        for (Actor actor : actors) {
+          if (actor.getId() != null) {
+              throw new BadRequestAlertException("A new actor cannot already have an ID", ENTITY_NAME, "idexists");
+          }
+        }
+        List<Actor> result = actorRepository.saveAll(actors);
+        return actorRepository.findAll();
+    }
+    
 }
