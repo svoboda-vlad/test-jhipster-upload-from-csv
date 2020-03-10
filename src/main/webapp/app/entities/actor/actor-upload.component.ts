@@ -11,7 +11,7 @@ import { ActorService } from './actor.service';
 export class ActorUploadComponent {
   dataList: any[] = [];
 
-  constructor(private papa: Papa) {}
+  constructor(private papa: Papa, private actorService: ActorService) {}
   
   handleUpload($event: any): void {
     const fileList = $event.srcElement.files;
