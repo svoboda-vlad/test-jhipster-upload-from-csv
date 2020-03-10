@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Papa } from "ngx-papaparse";
+import moment from 'moment';
 
 import { IActor, Actor } from 'app/shared/model/actor.model';
 import { ActorService } from './actor.service';
@@ -38,7 +39,7 @@ export class ActorUploadComponent {
   private createFromDataList(): IActor[] {
     const actors: IActor[] = [];  
     for (const record of this.dataList) {
-      actors.push(new Actor(undefined, record.name, record.birthDate));
+      actors.push(new Actor(undefined, record.name, moment(record.birthDate)));
     }
     return actors;
   }  
