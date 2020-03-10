@@ -4,6 +4,13 @@
 
         <input class="btn btn-primary float-right jh-create-entity create-actor" type="file" (change)="handleUpload($event)" accept=".csv" />
     </h2>
+    
+    <button id="jh-saveall-entity" class="btn btn-primary float-right jh-create-entity create-actor" (click)="saveAll()">
+        <fa-icon icon="plus"></fa-icon>
+        <span  jhiTranslate="jhipsterDemoApp.actor.home.uploadLabel">
+        Save All Actors
+        </span>
+    </button>    
 
     <div class="table-responsive" id="entities" *ngIf="dataList?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
