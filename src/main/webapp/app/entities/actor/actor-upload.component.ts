@@ -73,5 +73,4 @@ export class ActorUploadComponent {
     window.history.back();
   }
   
-
 }
