@@ -37,7 +37,14 @@ export class ActorUploadComponent {
   saveAll(): void {
     this.isSaving = true;
     const actors = this.createFromDataList();
-    this.subscribeToSaveAllResponse(this.actorService.createAll(actors));
+    // this.subscribeToSaveAllResponse(this.actorService.createAll(actors));
+    for (const actor of actors) {
+      if (actor.id !== undefined) {
+        this.subscribeToSaveResponse(this.actorService.update(actor));
+      } else {
+        this.subscribeToSaveResponse(this.actorService.create(actor));
+      }     
+    }   
   }
 
   private createFromDataList(): IActor[] {
