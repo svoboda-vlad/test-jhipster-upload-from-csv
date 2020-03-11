@@ -14,6 +14,7 @@ import { ActorService } from './actor.service';
 export class ActorUploadComponent {
   dataList: any[] = [];
   isSaving = false;
+  status = "Nothing";
 
   constructor(private papa: Papa, private actorService: ActorService) {}
   
@@ -36,15 +37,19 @@ export class ActorUploadComponent {
   
   saveAll(): void {
     this.isSaving = true;
+    this.status = "saveAll started";
     const actors = this.createFromDataList();
+    this.status = "createFromDataList finished (" + actors.length + ")";
     // this.subscribeToSaveAllResponse(this.actorService.createAll(actors));
     for (const actor of actors) {
+      this.status = "saving: " + actor.name;
       if (actor.id !== undefined) {
         this.subscribeToSaveResponse(this.actorService.update(actor));
       } else {
         this.subscribeToSaveResponse(this.actorService.create(actor));
-      }     
-    }   
+      }
+      this.status = "saved: " + actor.name;
+    }
   }
 
   private createFromDataList(): IActor[] {
@@ -52,10 +57,10 @@ export class ActorUploadComponent {
     for (const record of this.dataList) {
       actors.push({
       ...new Actor(),
-      id: record.id || null,
-      name: record.name || null,
-      birthDate: record.birthDate || null,
-      height: record.height || null});
+      id: record.id,
+      name: record.name,
+      birthDate: record.birthDate,
+      height: record.height});
     };
     return actors;    
   }
