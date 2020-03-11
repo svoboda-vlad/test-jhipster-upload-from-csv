@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Papa } from "ngx-papaparse";
 import moment from 'moment';
+import { HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { IActor, Actor } from 'app/shared/model/actor.model';
 import { ActorService } from './actor.service';
@@ -11,6 +13,7 @@ import { ActorService } from './actor.service';
 })
 export class ActorUploadComponent {
   dataList: any[] = [];
+  isSaving = false;
 
   constructor(private papa: Papa, private actorService: ActorService) {}
   
@@ -32,16 +35,43 @@ export class ActorUploadComponent {
   }
   
   saveAll(): void {
+    this.isSaving = true;
     const actors = this.createFromDataList();
-    this.actorService.createAll(actors);
+    this.subscribeToSaveAllResponse(this.actorService.createAll(actors));
   }
 
   private createFromDataList(): IActor[] {
-    const actors: IActor[] = [];  
+    const actors: IActor[] = [];
     for (const record of this.dataList) {
-      actors.push(new Actor(undefined, record.name, moment(record.birthDate), undefined));
-    }
-    return actors;
-  }  
+      actors.push({
+      ...new Actor(),
+      id: record.id,
+      name: record.name,
+      birthDate: record.birthDate,
+      height: record.height});
+    };
+    return actors;    
+  }
+  
+  protected subscribeToSaveAllResponse(result: Observable<HttpResponse<IActor[]>>): void {
+    result.subscribe(
+      () => this.onSaveSuccess(),
+      () => this.onSaveError()
+    );
+  }
+
+  protected onSaveSuccess(): void {
+    this.isSaving = false;
+    this.previousState();
+  }
+
+  protected onSaveError(): void {
+    this.isSaving = false;
+  }
+
+  previousState(): void {
+    window.history.back();
+  }
+  
 
 }
