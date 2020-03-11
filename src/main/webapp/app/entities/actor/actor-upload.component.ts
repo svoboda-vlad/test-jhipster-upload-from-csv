@@ -66,6 +66,13 @@ export class ActorUploadComponent {
       () => this.onSaveError()
     );
   }
+  
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<IActor>>): void {
+    result.subscribe(
+      () => this.onSaveSuccess(),
+      () => this.onSaveError()
+    );
+  }  
 
   protected onSaveSuccess(): void {
     this.isSaving = false;
