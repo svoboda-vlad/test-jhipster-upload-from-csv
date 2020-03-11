@@ -45,10 +45,10 @@ export class ActorUploadComponent {
     for (const record of this.dataList) {
       actors.push({
       ...new Actor(),
-      id: record.id,
-      name: record.name,
-      birthDate: record.birthDate,
-      height: record.height});
+      id: record.id || null,
+      name: record.name || null,
+      birthDate: record.birthDate || null,
+      height: record.height || null});
     };
     return actors;    
   }
