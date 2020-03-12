@@ -38,14 +38,15 @@ export class ActorUploadComponent {
   saveAll(): void {
     this.isSaving = true;
     this.status = "saveAll started";
-    const actors = this.createFromDataList();
+    const actors: IActor[] = this.createFromDataList();
     this.status = "createFromDataList finished (" + actors.length + ")";
     // this.subscribeToSaveAllResponse(this.actorService.createAll(actors));
     for (const actor of actors) {
-      this.status = "saving: " + actor.name;
       if (actor.id !== undefined) {
+        this.status = "updating: " + actor.name;
         this.subscribeToSaveResponse(this.actorService.update(actor));
       } else {
+        this.status = "creating: " + actor.name;
         this.subscribeToSaveResponse(this.actorService.create(actor));
       }
       this.status = "saved: " + actor.name;
