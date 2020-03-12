@@ -55,7 +55,7 @@ export class ActorUploadComponent {
   }
 
   private createFromDataList(): IActor[] {
-    let actors: IActor[] = [];
+    const actors: IActor[] = [];
     /* actors = [new Actor(0, "George Clooney", moment("1961-05-06")),
               new Actor(0, "Brad Pitt", moment("1963-12-18"))]; */
     for (const record of this.dataList) {
