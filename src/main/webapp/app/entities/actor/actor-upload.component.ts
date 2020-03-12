@@ -14,7 +14,6 @@ import { ActorService } from './actor.service';
 export class ActorUploadComponent {
   dataList: any[] = [];
   isSaving = false;
-  status = "Nothing";
 
   constructor(private papa: Papa, private actorService: ActorService) {}
   
@@ -37,27 +36,12 @@ export class ActorUploadComponent {
   
   saveAll(): void {
     this.isSaving = true;
-    this.status = "saveAll started";
     const actors: IActor[] = this.createFromDataList();
-    this.status = "createFromDataList finished (" + actors.length + ")";
-    // this.subscribeToSaveAllResponse(this.actorService.createAll(actors));
-    for (const actor of actors) {
-      if (actor.id !== undefined) {
-        this.status = "updating: " + actor.name;
-        this.subscribeToSaveResponse(this.actorService.update(actor));
-      } else {
-        this.status = "creating: " + actor.name;
-        this.subscribeToSaveResponse(this.actorService.create(actor));
-      }
-      this.status = "saved: " + actor.name;
-    }
-    this.status = "saving finished";
+    this.subscribeToSaveAllResponse(this.actorService.createAll(actors));
   }
 
   private createFromDataList(): IActor[] {
     const actors: IActor[] = [];
-    /* actors = [new Actor(0, "George Clooney", moment("1961-05-06")),
-              new Actor(0, "Brad Pitt", moment("1963-12-18"))]; */
     for (const record of this.dataList) {
       actors.push({
       ...new Actor(),
@@ -76,13 +60,6 @@ export class ActorUploadComponent {
     );
   }
   
-  protected subscribeToSaveResponse(result: Observable<HttpResponse<IActor>>): void {
-    result.subscribe(
-      () => this.onSaveSuccess(),
-      () => this.onSaveError()
-    );
-  }  
-
   protected onSaveSuccess(): void {
     this.isSaving = false;
     this.previousState();
