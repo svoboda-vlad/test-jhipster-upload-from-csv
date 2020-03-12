@@ -51,19 +51,22 @@ export class ActorUploadComponent {
       }
       this.status = "saved: " + actor.name;
     }
+    this.status = "saving finished";
   }
 
   private createFromDataList(): IActor[] {
     const actors: IActor[] = [];
-    for (const record of this.dataList) {
+    actors = [new Actor(0, "George Clooney", moment("1961-05-06")),
+              new Actor(0, "Brad Pitt", moment("1963-12-18"))];
+    /*for (const record of this.dataList) {
       actors.push({
       ...new Actor(),
       id: record.id,
       name: record.name,
       birthDate: record.birthDate,
       height: record.height});
-    };
-    return actors;    
+    };*/
+    return actors;
   }
   
   protected subscribeToSaveAllResponse(result: Observable<HttpResponse<IActor[]>>): void {
