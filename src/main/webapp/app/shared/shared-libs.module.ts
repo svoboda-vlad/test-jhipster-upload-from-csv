@@ -6,6 +6,7 @@ import { NgJhipsterModule } from 'ng-jhipster';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   exports: [
@@ -16,7 +17,8 @@ import { TranslateModule } from '@ngx-translate/core';
     InfiniteScrollModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    TranslateModule
+    TranslateModule,
+    NgSelectModule
   ]
 })
 export class JhipsterDemoSharedLibsModule {}
