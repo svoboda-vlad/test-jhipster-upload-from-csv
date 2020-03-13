@@ -12,8 +12,6 @@ import { ActorService } from 'app/entities/actor/actor.service';
 import { IDirector } from 'app/shared/model/director.model';
 import { DirectorService } from 'app/entities/director/director.service';
 
-type SelectableEntity = IActor | IDirector;
-
 @Component({
   selector: 'jhi-movie-update',
   templateUrl: './movie-update.component.html'
@@ -28,7 +26,7 @@ export class MovieUpdateComponent implements OnInit {
     name: [null, [Validators.required]],
     year: [null, [Validators.min(1900), Validators.max(2100)]],
     actors: [],
-    director: []
+    director: []    
   });
 
   constructor(
@@ -55,7 +53,7 @@ export class MovieUpdateComponent implements OnInit {
       name: movie.name,
       year: movie.year,
       actors: movie.actors,
-      director: movie.director
+      director: movie.director      
     });
   }
 
@@ -100,18 +98,4 @@ export class MovieUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: SelectableEntity): any {
-    return item.id;
-  }
-
-  getSelected(selectedVals: IActor[], option: IActor): IActor {
-    if (selectedVals) {
-      for (let i = 0; i < selectedVals.length; i++) {
-        if (option.id === selectedVals[i].id) {
-          return selectedVals[i];
-        }
-      }
-    }
-    return option;
-  }
 }

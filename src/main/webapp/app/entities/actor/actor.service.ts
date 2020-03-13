@@ -83,4 +83,5 @@ export class ActorService {
       .post<IActor[]>(this.resourceUrlSaveAll, copies, { observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }  
+
 }
