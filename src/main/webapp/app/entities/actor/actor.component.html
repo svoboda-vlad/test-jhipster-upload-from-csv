@@ -8,6 +8,13 @@
             Create a new Actor
             </span>
         </button>
+        
+        <button id="jh-upload-entity" class="btn btn-primary float-right jh-create-entity create-actor" [routerLink]="['/actor/upload']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="jhipsterDemoApp.actor.home.uploadLabel">
+            Upload Actors from file
+            </span>
+        </button>        
     </h2>
 
     <jhi-alert-error></jhi-alert-error>

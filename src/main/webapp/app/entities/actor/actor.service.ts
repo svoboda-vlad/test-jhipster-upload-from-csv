@@ -15,6 +15,7 @@ type EntityArrayResponseType = HttpResponse<IActor[]>;
 @Injectable({ providedIn: 'root' })
 export class ActorService {
   public resourceUrl = SERVER_API_URL + 'api/actors';
+  public resourceUrlSaveAll = SERVER_API_URL + 'api/actors/all';  
 
   constructor(protected http: HttpClient) {}
 
@@ -71,4 +72,16 @@ export class ActorService {
     }
     return res;
   }
+  
+  createAll(actors: IActor[]): Observable<EntityArrayResponseType> {
+    const copies = [];
+    let actor;
+    for (actor of actors) {
+      copies.push(this.convertDateFromClient(actor));
+    }
+    return this.http
+      .post<IActor[]>(this.resourceUrlSaveAll, copies, { observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }  
+
 }

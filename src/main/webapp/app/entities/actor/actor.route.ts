@@ -10,6 +10,8 @@ import { ActorService } from './actor.service';
 import { ActorComponent } from './actor.component';
 import { ActorDetailComponent } from './actor-detail.component';
 import { ActorUpdateComponent } from './actor-update.component';
+import { ActorUploadComponent } from './actor-upload.component';
+
 
 @Injectable({ providedIn: 'root' })
 export class ActorResolve implements Resolve<IActor> {
@@ -61,6 +63,15 @@ export const actorRoute: Routes = [
     resolve: {
       actor: ActorResolve
     },
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'jhipsterDemoApp.actor.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: 'upload',
+    component: ActorUploadComponent,
     data: {
       authorities: ['ROLE_USER'],
       pageTitle: 'jhipsterDemoApp.actor.home.title'
