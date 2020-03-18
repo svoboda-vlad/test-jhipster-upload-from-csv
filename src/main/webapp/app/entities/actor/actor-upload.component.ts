@@ -14,6 +14,7 @@ import { ActorService } from './actor.service';
 export class ActorUploadComponent {
   dataList: any[] = [];
   isSaving = false;
+  actors?: IActor[];
 
   constructor(private papa: Papa, private actorService: ActorService) {}
   
@@ -47,24 +48,27 @@ export class ActorUploadComponent {
       ...new Actor(),
       id: record.id,
       name: record.name,
+      birthDate: record.birthDate ? moment(record.birthDate) : undefined,
       birthDate: moment(record.birthDate),
       height: record.height});
     };
     return actors;
   }
-  
+
   protected subscribeToSaveAllResponse(result: Observable<HttpResponse<IActor[]>>): void {
     result.subscribe(
-      () => this.onSaveSuccess(),
+      (res: HttpResponse<IActor[]>) => { this.onSaveSuccess(res) },
+  
       () => this.onSaveError()
     );
   }
   
-  protected onSaveSuccess(): void {
+  protected onSaveSuccess(res: HttpResponse<IActor[]>): void {
+    this.actors = res.body || [];
     this.isSaving = false;
     this.previousState();
-  }
-
+  }  
+  
   protected onSaveError(): void {
     this.isSaving = false;
   }
