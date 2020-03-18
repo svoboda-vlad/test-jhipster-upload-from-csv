@@ -49,6 +49,7 @@ export class ActorUploadComponent {
       id: record.id,
       name: record.name,
       birthDate: record.birthDate ? moment(record.birthDate) : undefined,
+      birthDate: moment(record.birthDate),
       height: record.height});
     };
     return actors;
@@ -57,6 +58,7 @@ export class ActorUploadComponent {
   protected subscribeToSaveAllResponse(result: Observable<HttpResponse<IActor[]>>): void {
     result.subscribe(
       (res: HttpResponse<IActor[]>) => { this.onSaveSuccess(res) },
+  
       () => this.onSaveError()
     );
   }
