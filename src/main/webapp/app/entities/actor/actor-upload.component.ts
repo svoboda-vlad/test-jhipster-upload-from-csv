@@ -49,7 +49,6 @@ export class ActorUploadComponent {
       id: record.id,
       name: record.name,
       birthDate: record.birthDate ? moment(record.birthDate) : undefined,
-      birthDate: moment(record.birthDate),
       height: record.height});
     };
     return actors;
