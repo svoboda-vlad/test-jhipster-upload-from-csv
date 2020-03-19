@@ -47,6 +47,32 @@ describe('Component Tests', () => {
         expect(comp.isSaving).toEqual(false);
       });
       //)
+      it("Should populate dataList when parsing file", () => {
+        const expected = [
+          { name: "AAAA", birthDate: "2000-01-01", height: 1 },
+          { name: "BBBB", birthDate: "2000-02-02", height: 2 }
+        ];
+        const parsedFile = createFileFromMockFile({
+          body: "name;birthDate;height\\nAAAA;\"2000-01-01\";1\\nBBBB;\"2000-02-02\";2",
+          mimeType: "text/csv",
+          name: "test.csv"
+        });
+        comp.parseCsvFile(parsedFile);
+        expect(comp.dataList).toEqual(expected);
+      });      
     });
   });
 });
+
+interface MockFile {
+  name: string;
+  body: string;
+  mimeType: string;
+}
+
+const createFileFromMockFile = (file: MockFile): File => {
+  const blob = new Blob([file.body], { type: file.mimeType }) as any;
+  blob["lastModifiedDate"] = new Date();
+  blob["name"] = file.name;
+  return blob as File;
+};
