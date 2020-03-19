@@ -26,8 +26,27 @@ describe('Component Tests', () => {
       service = fixture.debugElement.injector.get(ActorService);
     });
 
-    describe('save', () => {
+    describe("Component methods", () => {
+      it("Should call createAll service on save all", () => {
+        //fakeAsync(
+        // GIVEN
+        const entityArray = [new Actor(), new Actor()];
+        comp.dataList = entityArray;
 
+        spyOn(service, "createAll").and.returnValue(
+          of(new HttpResponse({ body: entityArray }))
+        );
+        // WHEN
+        comp.saveAll();
+        // tick(); // simulate async
+
+        // THEN
+        // expect(service.create).toHaveBeenCalledWith(entity);
+        expect(service.createAll).toHaveBeenCalled();
+        expect(comp.actors && comp.actors[0]).toEqual(new Actor());
+        expect(comp.isSaving).toEqual(false);
+      });
+      //)
     });
   });
 });
