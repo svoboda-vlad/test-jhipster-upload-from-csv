@@ -7,6 +7,19 @@ import { ActorUploadComponent } from 'app/entities/actor/actor-upload.component'
 import { ActorService } from 'app/entities/actor/actor.service';
 import { Actor } from 'app/shared/model/actor.model';
 
+interface MockFile {
+  name: string;
+  body: string;
+  mimeType: string;
+}
+
+const createFileFromMockFile = (file: MockFile): File => {
+  const blob = new Blob([file.body], { type: file.mimeType }) as any;
+  blob["lastModifiedDate"] = new Date();
+  blob["name"] = file.name;
+  return blob as File;
+};
+
 describe('Component Tests', () => {
   describe('Actor Management Upload Component', () => {
     let comp: ActorUploadComponent;
@@ -63,16 +76,3 @@ describe('Component Tests', () => {
     });
   });
 });
-
-interface MockFile {
-  name: string;
-  body: string;
-  mimeType: string;
-}
-
-const createFileFromMockFile = (file: MockFile): File => {
-  const blob = new Blob([file.body], { type: file.mimeType }) as any;
-  blob["lastModifiedDate"] = new Date();
-  blob["name"] = file.name;
-  return blob as File;
-};
