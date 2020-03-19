@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 
@@ -60,7 +60,7 @@ describe('Component Tests', () => {
         expect(comp.isSaving).toEqual(false);
       });
       //)
-      it("Should populate dataList when parsing file", () => {
+      it("Should populate dataList when parsing file", fakeAsync(() => {
         const expected = [
           { name: "AAAA", birthDate: "2000-01-01", height: 1 },
           { name: "BBBB", birthDate: "2000-02-02", height: 2 }
@@ -71,8 +71,9 @@ describe('Component Tests', () => {
           name: "test.csv"
         });
         comp.parseCsvFile(parsedFile);
+        tick();
         expect(comp.dataList).toEqual(expected);
-      });      
+      }));      
     });
   });
 });
