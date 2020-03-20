@@ -70,6 +70,7 @@ describe('Component Tests', () => {
           mimeType: "text/csv",
           name: "test.csv"
         });
+        expect(parsedFile).not.toEqual(null);
         comp.parseCsvFile(parsedFile);
         tick();
         expect(comp.dataList).toEqual(expected);
