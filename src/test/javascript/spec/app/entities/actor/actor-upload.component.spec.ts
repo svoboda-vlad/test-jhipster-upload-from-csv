@@ -92,7 +92,8 @@ describe('Component Tests', () => {
         comp.parseCsvFile(parsedFile);
         
         fixture.whenStable().then(() => {
-          expect(comp.dataList).toEqual(expected);
+          // expect(comp.dataList).toEqual(expected);
+          expect(comp.dataList.equals(expected)).toBe(true);
         });
       }));
     });
