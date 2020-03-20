@@ -7,19 +7,6 @@ import { ActorUploadComponent } from 'app/entities/actor/actor-upload.component'
 import { ActorService } from 'app/entities/actor/actor.service';
 import { Actor } from 'app/shared/model/actor.model';
 
-interface MockFile {
-  name: string;
-  body: string;
-  mimeType: string;
-}
-
-const createFileFromMockFile = (file: MockFile): File => {
-  const blob = new Blob([file.body], { type: file.mimeType }) as any;
-  blob["lastModifiedDate"] = new Date();
-  blob["name"] = file.name;
-  return blob as File;
-};
-
 describe('Component Tests', () => {
   describe('Actor Management Upload Component', () => {
     let comp: ActorUploadComponent;
@@ -41,7 +28,6 @@ describe('Component Tests', () => {
 
     describe("Component methods", () => {
       it("Should call createAll service on save all", () => {
-        //fakeAsync(
         // GIVEN
         const entityArray = [new Actor(), new Actor()];
         comp.dataList = entityArray;
@@ -54,49 +40,21 @@ describe('Component Tests', () => {
         // tick(); // simulate async
 
         // THEN
-        // expect(service.create).toHaveBeenCalledWith(entity);
         expect(service.createAll).toHaveBeenCalled();
         expect(comp.actors && comp.actors[0]).toEqual(new Actor());
         expect(comp.isSaving).toEqual(false);
       });
-      //)
-      /*it("Should populate dataList when parsing file", fakeAsync(() => {
+      
+      it("Should populate dataList when parsing file", () => {
+        const parsedFile = 'name;birthDate;height\nAAAA;"2000-01-01";1\nBBBB;"2000-02-02";2';
         const expected = [
           { name: "AAAA", birthDate: "2000-01-01", height: 1 },
           { name: "BBBB", birthDate: "2000-02-02", height: 2 }
         ];
-        const parsedFile = createFileFromMockFile({
-          body: "name;birthDate;height\\nAAAA;\"2000-01-01\";1\\nBBBB;\"2000-02-02\";2",
-          mimeType: "text/csv",
-          name: "test.csv"
-        });
-        expect(parsedFile).not.toEqual(null);
         comp.parseCsvFile(parsedFile);
-        tick();
         expect(comp.dataList).toEqual(expected);
-      }));*/
-      
-      it("Should populate dataList when parsing file", async(() => {
-        const expected = [
-          { name: "AAAA", birthDate: "2000-01-01", height: 1 },
-          { name: "BBBB", birthDate: "2000-02-02", height: 2 }
-        ];
-        /*const parsedFile = createFileFromMockFile({
-          body: "name;birthDate;height\\nAAAA;\"2000-01-01\";1\\nBBBB;\"2000-02-02\";2",
-          mimeType: "text/csv",
-          name: "test.csv"
-        });*/
-        const parsedFile = new File(["name;birthDate;height\\nAAAA;\"1999-01-01\";1\\nBBBB;\"1999-02-02\";2"],
-          "text/csv");
-        expect(parsedFile).not.toEqual(null);
-        comp.parseCsvFile(parsedFile);
-        
-        fixture.whenStable().then(() => {
-          expect(comp.dataList).toEqual(expected);
-          expect(comp.dataList).toMatchObject(expected);
-        });
-      }));
-      
+      });
+            
     });
   });
 });
