@@ -93,7 +93,7 @@ describe('Component Tests', () => {
         
         fixture.whenStable().then(() => {
           // expect(comp.dataList).toEqual(expected);
-          expect(comp.dataList.equals(expected)).toBe(true);
+          expect(comp.dataList).toMatchObject(expected);
         });
       }));
     });
