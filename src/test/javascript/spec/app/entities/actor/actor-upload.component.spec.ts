@@ -86,7 +86,8 @@ describe('Component Tests', () => {
           mimeType: "text/csv",
           name: "test.csv"
         });*/
-        const parsedFile = new File();
+        const parsedFile = new File("name;birthDate;height\\nAAAA;\"2000-01-01\";1\\nBBBB;\"2000-02-02\";2",
+          "text/csv");
         expect(parsedFile).not.toEqual(null);
         comp.parseCsvFile(parsedFile);
         
