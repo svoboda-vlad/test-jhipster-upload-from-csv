@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick, async } from '@angular/core/testing';
 import { HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 
@@ -60,7 +60,7 @@ describe('Component Tests', () => {
         expect(comp.isSaving).toEqual(false);
       });
       //)
-      it("Should populate dataList when parsing file", fakeAsync(() => {
+      /*it("Should populate dataList when parsing file", fakeAsync(() => {
         const expected = [
           { name: "AAAA", birthDate: "2000-01-01", height: 1 },
           { name: "BBBB", birthDate: "2000-02-02", height: 2 }
@@ -74,7 +74,25 @@ describe('Component Tests', () => {
         comp.parseCsvFile(parsedFile);
         tick();
         expect(comp.dataList).toEqual(expected);
-      }));      
+      }));*/
+      
+      it("Should populate dataList when parsing file", async(() => {
+        const expected = [
+          { name: "AAAA", birthDate: "2000-01-01", height: 1 },
+          { name: "BBBB", birthDate: "2000-02-02", height: 2 }
+        ];
+        const parsedFile = createFileFromMockFile({
+          body: "name;birthDate;height\\nAAAA;\"2000-01-01\";1\\nBBBB;\"2000-02-02\";2",
+          mimeType: "text/csv",
+          name: "test.csv"
+        });
+        expect(parsedFile).not.toEqual(null);
+        comp.parseCsvFile(parsedFile);
+        
+        fixture.whenStable().then(() => {
+          expect(comp.dataList).toEqual(expected);
+        });
+      }));
     });
   });
 });
