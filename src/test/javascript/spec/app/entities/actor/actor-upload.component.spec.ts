@@ -81,11 +81,12 @@ describe('Component Tests', () => {
           { name: "AAAA", birthDate: "2000-01-01", height: 1 },
           { name: "BBBB", birthDate: "2000-02-02", height: 2 }
         ];
-        const parsedFile = createFileFromMockFile({
+        /*const parsedFile = createFileFromMockFile({
           body: "name;birthDate;height\\nAAAA;\"2000-01-01\";1\\nBBBB;\"2000-02-02\";2",
           mimeType: "text/csv",
           name: "test.csv"
-        });
+        });*/
+        const parsedFile = new File();
         expect(parsedFile).not.toEqual(null);
         comp.parseCsvFile(parsedFile);
         
