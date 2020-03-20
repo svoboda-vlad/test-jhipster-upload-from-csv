@@ -30,7 +30,7 @@
     "ngx-papaparse": "4.0.4",    
     "ngx-webstorage": "4.0.1",
     "@ng-select/ng-select": "3.7.2",    
-    "rxjs": "6.5.3",
+    "rxjs": "6.5.4",
     "swagger-ui-dist": "3.24.3",
     "tslib": "1.10.0",
     "zone.js": "0.10.2"
